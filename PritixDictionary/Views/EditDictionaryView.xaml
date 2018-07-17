@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PritixDictionary.Views.EditDictionaryView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Order="Primary" Text="ADD" Priority="0" Command="{Binding AddKeyValue}" />
+        <ToolbarItem  Order="Primary" Text="SAVE" Priority="1" Command="{Binding Save}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="15,15,15,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout BackgroundColor="{StaticResource ThemeForegroundColor}">
+                    <Label Text="{Binding PrimaryLanguage}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" TextColor="{StaticResource ThemeBackgroundColor}"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" BackgroundColor="{StaticResource ThemeForegroundColor}">
+                    <Label  Text="{Binding TranslateLanguage}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" TextColor="{StaticResource ThemeBackgroundColor}"/>
+                </StackLayout>
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListView Margin="15,10,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                      ItemsSource="{Binding DictionaryDetails}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell x:Name="viewCell"  >
+                               
+                                <ViewCell.View>
+                                    <ContentView>
+                                        <Grid HorizontalOptions="FillAndExpand" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Entry Margin="5,0,5,0" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ThemeForegroundColor}" 
+                                                   Text="{Binding Key,Mode=TwoWay}"/>
+                                            <Entry Grid.Column="1" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" TextColor="{StaticResource ThemeForegroundColor}" 
+                                                   Text="{Binding Value,Mode=TwoWay}"/>                                            
+                                        </Grid>
+                                    </ContentView>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
